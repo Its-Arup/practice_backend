@@ -41,7 +41,7 @@ userRouter.post("/login", async (req, res) => {
   try {
     const user = await UserModel.findOne({ email });
     if (!user) {
-      res.status(200).send({ msg: "invalid login ID or password" });
+      res.status(200).send({ "msg": "invalid login ID or password" });
     } else {
       bcrypt.compare(password, user.password, (err, result) => {
         if (result) {
@@ -52,17 +52,17 @@ userRouter.post("/login", async (req, res) => {
               if (token) {
                 res
                   .status(200)
-                  .send({ msg: "user login successful", token: token });
+                  .send({ "msg": "user login successful", "token": token });
               }
             }
           );
         } else {
-          res.status(200).send({ msg: "invalid login ID or password" });
+          res.status(200).send({ "msg": "invalid login ID or password" });
         }
       });
     }
   } catch (error) {
-    res.status(400).semd({ msg: "errror during login" });
+    res.status(400).semd({ "msg": "errror during login" });
   }
 });
 
